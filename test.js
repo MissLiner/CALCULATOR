@@ -1,9 +1,5 @@
 const display = document.getElementById("display");
-const numBtns = document.querySelectorAll(".numBtn");
-const operBtns = document.querySelectorAll(".operBtn");
-const eqlBtn = document.getElementById("eqlBtn");
 const calcBox = document.querySelector('#numBtnsBox');
-
 for (let i = 1; i <= 9; i++) {
     let numBtn = document.createElement('button');
     numBtn.textContent = `${i}`;
@@ -12,7 +8,12 @@ for (let i = 1; i <= 9; i++) {
     numBtn.id = `numBtn${i}`;
     calcBox.appendChild(numBtn);
 }
-let num1;
+
+const numBtns = document.querySelectorAll(".numBtn");
+const operBtns = document.querySelectorAll(".operBtn");
+const eqlBtn = document.getElementById("eqlBtn");
+
+let num1 = 0;
 let num2;
 let num3;
 let operand;
@@ -28,26 +29,26 @@ function operate(operator, a, b) {
 }
 
 numBtns.forEach((button) => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function newValue() {
         console.log(button.textContent);
-        if (num1 == undefined) {
-            num1 = button.textContent;
+        if (num1 === 0) {
+            num1 = parseInt(button.textContent);
             console.log(num1);
             updateDisplay(num1);
         }
         else if (operand == undefined) {
-            num1 += button.textContent;
+            num1 += parseInt(button.textContent);
             updateDisplay(num1);
         }
         else if (num2 == undefined) {
-            num2 = button.textContent;
+            num2 = parseInt(button.textContent);
             updateDisplay(num2);
         }
         else {
-            num2 += button.textContent;
+            num2 += parseInt(button.textContent);
             updateDisplay(num2);
         }
-    })
+    });
 })
 
 operBtns.forEach((button) => {
