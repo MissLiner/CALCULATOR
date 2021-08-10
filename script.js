@@ -36,11 +36,11 @@ numBtns.forEach((button) => {
         else if (operand !== undefined && displayValue !== num2) {
             displayValue = button.textContent;
             display.textContent = displayValue;
-            num2 = displayValue;
+            num2 = parseInt(displayValue);
         }
         else if (operand !== undefined && displayValue === num2) {
             displayValue += button.textContent;
-            num2 = displayValue;
+            num2 = parseInt(displayValue);
         }
         else {
         displayValue += button.textContent;
@@ -53,7 +53,7 @@ const operBtns = document.querySelectorAll(".operBtn");
 operBtns.forEach((button) => {
     button.addEventListener('click', () => {
         if (num2 === undefined) {
-            num1 = displayValue;
+            num1 = parseInt(displayValue);
             operand = button.textContent;
         }
 
@@ -72,15 +72,13 @@ operBtns.forEach((button) => {
 const eqlBtn = document.getElementById("eqlBtn");
 eqlBtn.addEventListener('click', () => {
     
-    let a = parseInt(displayValue.charAt(0));
-    let b = parseInt(displayValue.charAt(2));
-    let c = displayValue.charAt(1);
-    let finalNum = operate(c, a, b);
+    let finalNum = operate(operand, num1, num2);
     console.log(finalNum);
     display.textContent = finalNum;
-    num1 = undefined;
+    num1 = finalNum;
     num2 = undefined;
     operand = undefined;
+    displayValue = 0;
 
 })
 
