@@ -13,11 +13,12 @@ const numBtns = document.querySelectorAll(".numBtn");
 const operBtns = document.querySelectorAll(".operBtn");
 const eqlBtn = document.getElementById("eqlBtn");
 const decBtn = document.getElementById("decBtn");
+const delBtn = document.getElementById("delBtn");
 
 let num1 = "";
 let num2 = "";
 let num3 = "";
-let operand;
+let operand = "";
 let displayValue;
 
 updateDisplay = (content) => display.textContent = content;
@@ -39,40 +40,31 @@ function operate(operator, a, b) {
 
 numBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-        if (operand == undefined) {
+        if (operand == "") {
             num1 += button.textContent;
-            num1 = parseFloat(num1);
             updateDisplay(num1);
         }
         else if (operand === "restart") {
               num1 = button.textContent;
-              num1 = parseFloat(num1);
               operand = "";
               updateDisplay(num1);
         }
         else {
             num2 += button.textContent;
-            num2 = parseFloat(num2);
             updateDisplay(num2)
-            console.log(num1);
-            console.log(num2);
-            console.log(num3);
-            console.log(operand);
         }
     });
 })
 
 operBtns.forEach((button) => {
     button.addEventListener('click', () => {
+   
         if (num2 == "") {
+            num1 = parseFloat(num1);
             operand = button.textContent;
-            console.log(num1);
-            console.log(num2);
-            console.log(num3);
-            console.log(operand);
         }
-
         else {
+            num2 = parseFloat(num2);
             num3 = operate(operand, num1, num2);
             num1 = Math.round(num3 * 100) / 100;
             num2 = "";
@@ -84,6 +76,8 @@ operBtns.forEach((button) => {
 })
 
 eqlBtn.addEventListener('click', () => {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     if (num1 !== "" && num2 !== "" && operand !== "") {
     num3 = operate(operand, num1, num2);
     num1 = Math.round(num3 * 100) / 100;
@@ -91,42 +85,78 @@ eqlBtn.addEventListener('click', () => {
     num3 = "";
     operand = "restart";
     updateDisplay(num1);
-    console.log(num1);
-    console.log(num2);
-    console.log(num3);
-    console.log(operand);
     }
 })
 
 clrBtn.addEventListener('click', () => {
-    display.textContent = "";
+    display.textContent = "0";
     num1 = "";
     num2 = "";
     num3 = "";
-    operand = undefined;
+    operand = "";
 });
 
+delBtn.addEventListener('click', () => {
+    if (operand !== "restart") {
+    if (num2 > 0) {
+        num2 = num2.toString();
+        if (num2.length < 2) {
+            num2 = 0;
+            updateDisplay(num2);
+        }
+        else {
+            num2 = num2.slice(0, -1);
+            num2 = parseFloat(num2);
+            updateDisplay(num2);
+        }
+    }
+
+    else if (num1 > 0 && num2 === "") {
+        num1 = num1.toString();
+        if (num1.length < 2) {
+            num1 = 0;
+            updateDisplay(num1);
+        }
+        else {
+            num1 = num1.slice(0, -1);
+            num1 = parseFloat(num1);
+            updateDisplay(num1);
+        }
+    }
+}
+})
+
 decBtn.addEventListener('click', () => {
-    if (display.textContent.includes(".") == false || operand === "restart") {
-        if (operand == undefined) {
+    if (display.textContent.includes(".") === false || operand !== "") {
+        if (operand == "") {
             num1 += ".";
-            //num1 = parseFloat(num1);
             updateDisplay(num1);
         }
         else if (operand === "restart") {
-              num1 = "0.";
-              //num1 = parseFloat(num1);
-              operand = "";
-              updateDisplay(num1);
+            num1 = "0.";
+            operand = "";
+            updateDisplay(num1);
+        }
+        else if (operand !== "" && num2 === "") {
+              num2 = "0.";
+              operand = "hi";
+              updateDisplay(num2);
         }
         else {
             num2 += ".";
-            //num2 = parseFloat(num2);
             updateDisplay(num2)
-            console.log(num1);
-            console.log(num2);
-            console.log(num3);
-            console.log(operand);
+
         }
     }
+})
+
+const allButtons = document.querySelectorAll("button");
+allButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(button.id);
+        console.log(num1);
+        console.log(num2);
+        console.log(num3);
+        console.log(operand);
+    })
 })
