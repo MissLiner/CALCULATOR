@@ -13,8 +13,8 @@ const numBtns = document.querySelectorAll(".numBtn");
 const operBtns = document.querySelectorAll(".operBtn");
 const eqlBtn = document.getElementById("eqlBtn");
 
-let num1 = 0;
-let num2;
+let num1 = "";
+let num2 = "";
 let num3;
 let operand;
 let displayValue;
@@ -30,34 +30,55 @@ function operate(operator, a, b) {
 
 numBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-        console.log(button.textContent);
-        if (num1 === 0) {
-            num1 = parseInt(button.textContent);
-            console.log(num1);
+        if (operand == undefined) {
+            num1 += button.textContent;
+            num1 = parseInt(num1);
             updateDisplay(num1);
-        }
-        else if (operand == undefined) {
-            num1 += parseInt(button.textContent);
-            updateDisplay(num1);
-        }
-        else if (num2 == undefined) {
-            num2 = parseInt(button.textContent);
-            updateDisplay(num2);
         }
         else {
-            num2 += parseInt(button.textContent);
-            updateDisplay(num2);
+            num2 += button.textContent;
+            num2 = parseInt(num2);
+            updateDisplay(num2)
+            console.log(num1);
+            console.log(num2);
+            console.log(num3);
+            console.log(operand);
         }
     });
 })
 
 operBtns.forEach((button) => {
     button.addEventListener('click', () => {
-        operand = button.textContent;
+        if (num2 == "") {
+            operand = button.textContent;
+        }
+
+        else {
+            operand = button.textContent;
+            num3 = operate(operand, num1, num2);
+            num1 = parseInt(num3);
+            num2 = "";
+            num3 = "";
+            updateDisplay(num1);
+            operand = "n";
+        }
+
     })
 })
 
 eqlBtn.addEventListener('click', () => {
     num3 = operate(operand, num1, num2);
-    updateDisplay(num3);
+    num1 = parseInt(num3);
+    num2 = "";
+    num3 = "";
+    operand = undefined;
+    updateDisplay(num1);
 })
+
+clrBtn.addEventListener('click', () => {
+    display.textContent = "";
+    num1 = "";
+    num2 = "";
+    num3 = "";
+    operand = undefined;
+});
