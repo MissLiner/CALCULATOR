@@ -35,8 +35,14 @@ numBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
         if (operand == undefined) {
             num1 += button.textContent;
-            num1 = Math.round(num1 * 100) / 100;
+            num1 = parseInt(num1);
             updateDisplay(num1);
+        }
+        else if (operand === "restart") {
+              num1 = button.textContent;
+              num1 = parseInt(num1);
+              operand = "";
+              updateDisplay(num1);
         }
         else {
             num2 += button.textContent;
@@ -61,28 +67,41 @@ operBtns.forEach((button) => {
         }
 
         else {
-            operand = button.textContent;
             num3 = operate(operand, num1, num2);
             num1 = Math.round(num3 * 100) / 100;
             num2 = "";
             num3 = "";
             updateDisplay(num1);
-            operand = "";
-            console.log(num1);
-            console.log(num2);
-            console.log(num3);
-            console.log(operand);
+            operand = button.textContent;
         }
+
+        // else {
+        //     operand = button.textContent;
+        //     num3 = operate(operand, num1, num2);
+        //     console.log(num1);
+        //     console.log(num2);
+        //     console.log(num3);
+        //     console.log(operand);
+        //     num1 = Math.round(num3 * 100) / 100;
+        //     num2 = "";
+        //     num3 = "";
+        //     updateDisplay(num1);
+        //     operand = "";
+        //     console.log(num1);
+        //     console.log(num2);
+        //     console.log(num3);
+        //     console.log(operand);
+        // }
 
     })
 })
 
 eqlBtn.addEventListener('click', () => {
     num3 = operate(operand, num1, num2);
-    num1 = parseFloat(num3).toFixed(2);
+    num1 = Math.round(num3 * 100) / 100;
     num2 = "";
     num3 = "";
-    operand = undefined;
+    operand = "restart";
     updateDisplay(num1);
     console.log(num1);
     console.log(num2);
