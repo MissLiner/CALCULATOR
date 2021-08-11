@@ -3,22 +3,69 @@
     text-align:center;
 }
 
+#headLeft {
+    writing-mode: vertical-lr;
+    position:absolute;
+    top: 0px;
+    text-orientation: upright;
+    font-size: 55px;
+    margin-left: 50px;
+    margin-top: 0px;
+    float:initial;
+}
+
+#headRight {
+    writing-mode: vertical-rl;
+    position:absolute;
+    top: 0px;
+    right: 50px;
+    text-orientation:upright;
+    font-size: 55px;
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    transform: scale(1, -1);
+}
+
 button {
-    background-color: white;
     text-align: center;
     height:50px;
     font-size:25px;
     border:none;
+    background: none;
 
+}
+
+#background {
+    z-index:-1;
+    height:100%;
+    width: 100%;
+width:60%;
+left:20%;
+    margin-top: 150px;
+    position: absolute;
+    text-align: left;
+    overflow-wrap: anywhere;
+    font-size: 60px;
+    color:rgb(245, 245, 245);
 }
 
 #calcBox {
     display: flexbox;
+    z-index: 5;
     width: 400px;
-    height: 450px;
-    margin: auto;
+    height: 525px;
+    margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
     border-style: solid;
     border-width:2px;
+    border-radius: 5%;
 }
 
 #display {
@@ -43,27 +90,47 @@ button {
     width: 100%;
     grid-template-columns: 33.3% 33.3% 33.3%;
     margin: auto;
+    margin-top: 5%;
 }
 
 #othBtnsBox {
     display: grid;
     width: 100%;
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+   
+    
+}
+
+.operBtn {
+    font-size: 30px;
+    text-align: center;
+    border: solid;
+    border-width: 2px;
+    border-radius: 10%;
+    
+    width: 70%;
     margin: auto;
 }
 
 #operBtnsBox {
     display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
+    width: 90%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: auto;
     align-items: center;
 }
 
 #eqlBtn {
     height: 100%;
-    grid-row: span 2;
+    width: 70%;
+    grid-column: span 3;
+    border: solid;
+    border-width: 2px;
+    border-radius: 10%;
+    margin:auto;
+    margin-top: 5%;
+
     
 }
 

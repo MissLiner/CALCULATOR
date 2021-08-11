@@ -14,6 +14,21 @@ const operBtns = document.querySelectorAll(".operBtn");
 const eqlBtn = document.getElementById("eqlBtn");
 const decBtn = document.getElementById("decBtn");
 const delBtn = document.getElementById("delBtn");
+const negBtn = document.getElementById("negBtn");
+const background = document.getElementById("background");
+
+const allButtons = document.querySelectorAll("button");
+allButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        background.textContent += button.textContent;
+        console.log(button.id);
+        console.log(num1);
+        console.log(num2);
+        console.log(num3);
+        console.log(operand);
+
+    })
+})
 
 let num1 = "";
 let num2 = "";
@@ -28,7 +43,7 @@ function operate(operator, a, b) {
     else if (operator === "-") { return (a - b); }
     else if (operator === "x") { return (a * b); }
     else if (operator === "/") { 
-        if (num2 === 0) {
+        if (b === 0) {
             display.textContent = "Dividing by 0 is a dangerous game!!";
         }
         else {
@@ -63,10 +78,11 @@ operBtns.forEach((button) => {
             num1 = parseFloat(num1);
             operand = button.textContent;
         }
-        else {
+        else if (num1 !== "" && num2 !== "" && operand !== "") {
             num2 = parseFloat(num2);
             num3 = operate(operand, num1, num2);
             num1 = Math.round(num3 * 100) / 100;
+            background.textContent += num1;
             num2 = "";
             num3 = "";
             updateDisplay(num1);
@@ -76,11 +92,12 @@ operBtns.forEach((button) => {
 })
 
 eqlBtn.addEventListener('click', () => {
+    if (num2 !== "") {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
-    if (num1 !== "" && num2 !== "" && operand !== "") {
     num3 = operate(operand, num1, num2);
     num1 = Math.round(num3 * 100) / 100;
+    background.textContent += num1;
     num2 = "";
     num3 = "";
     operand = "restart";
@@ -101,8 +118,8 @@ delBtn.addEventListener('click', () => {
     if (num2 > 0) {
         num2 = num2.toString();
         if (num2.length < 2) {
-            num2 = 0;
-            updateDisplay(num2);
+            num2 = "";
+            updateDisplay('0');
         }
         else {
             num2 = num2.slice(0, -1);
@@ -114,8 +131,8 @@ delBtn.addEventListener('click', () => {
     else if (num1 > 0 && num2 === "") {
         num1 = num1.toString();
         if (num1.length < 2) {
-            num1 = 0;
-            updateDisplay(num1);
+            num1 = "";
+            updateDisplay("0");
         }
         else {
             num1 = num1.slice(0, -1);
@@ -139,7 +156,6 @@ decBtn.addEventListener('click', () => {
         }
         else if (operand !== "" && num2 === "") {
               num2 = "0.";
-              operand = "hi";
               updateDisplay(num2);
         }
         else {
@@ -150,13 +166,17 @@ decBtn.addEventListener('click', () => {
     }
 })
 
-const allButtons = document.querySelectorAll("button");
-allButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log(button.id);
-        console.log(num1);
-        console.log(num2);
-        console.log(num3);
-        console.log(operand);
-    })
+negBtn.addEventListener('click', () => {
+    if (operand !== "restart") {
+    if (num1 !== "" && num2 === "" && operand === "") {
+        num1 = -num1;
+        updateDisplay(num1);
+    }
+    else if (num2 !== "") {
+        num2 = -num2;
+        updateDisplay(num2);
+    }
+}
 })
+
+

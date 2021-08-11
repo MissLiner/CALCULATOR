@@ -10,7 +10,9 @@
     </head>
 
     <body>
-        <h1>CALCULATOR</h1>
+        <div id="background"></div>
+        <h1 id="headLeft">CALCULATOR</h1>
+        <h1 id="headRight">CALCULATOR</h1>
         <div id="calcBox">
             
             <div id="display">0</div>
@@ -18,20 +20,21 @@
                 <button id="clrBtn" class="othrBtn">Clear</button>
                 <button id="delBtn" class="othrBtn">Del</button>
             </div>
+            <div id="operBtnsBox">
+                <button id="addBtn" class="operBtn" value="add">+</button>
+                <button id="sbtrBtn" class="operBtn" value="subtract">-</button>
+                <button id="multBtn" class="operBtn" value="multiply">x</button>
+                <button id="divBtn" class="operBtn" value="divide">/</button>
+               
+            </div>
             <div id="numBtnsBox"></div>
             <div id="othBtnsBox">
                 <button id="decBtn">.</button>
                 <button id="numBtn0" class="numBtn">0</button>
                 <button id="negBtn">+ / -</button>
-
-            </div>
-            <div id="operBtnsBox">
-                <button id="addBtn" class="operBtn" value="add">+</button>
-                <button id="sbtrBtn" class="operBtn" value="subtract">-</button>
                 <button id="eqlBtn" class="othrBtn">=</button>
-                <button id="multBtn" class="operBtn" value="multiply">x</button>
-                <button id="divBtn" class="operBtn" value="divide">/</button>
             </div>
+
 
             
 
