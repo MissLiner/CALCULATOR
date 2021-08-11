@@ -97,6 +97,7 @@ operBtns.forEach((button) => {
 })
 
 eqlBtn.addEventListener('click', () => {
+    if (num1 !== "" && num2 !== "" && operand !== "") {
     num3 = operate(operand, num1, num2);
     num1 = Math.round(num3 * 100) / 100;
     num2 = "";
@@ -107,6 +108,7 @@ eqlBtn.addEventListener('click', () => {
     console.log(num2);
     console.log(num3);
     console.log(operand);
+    }
 })
 
 clrBtn.addEventListener('click', () => {
