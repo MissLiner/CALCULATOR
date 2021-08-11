@@ -3,22 +3,37 @@
     <head>
         <title>Calculator</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <script src="test.js" defer></script>
     </head>
 
     <body>
-        <h1>Caroline's Calculator</h1>
+        <h1>CALCULATOR</h1>
         <div id="calcBox">
-            <div id="display">display</div>
+            
+            <div id="display"></div>
+            <div id="topBtnsBox">
+                <button id="clrBtn" class="othrBtn">Clear</button>
+                <button id="delBtn" class="othrBtn">Del</button>
+            </div>
             <div id="numBtnsBox"></div>
+            <div id="othBtnsBox">
+                <button id="decBtn">.</button>
+                <button id="numBtn0" class="numBtn">0</button>
+                <button id="negBtn">+ / -</button>
+
+            </div>
             <div id="operBtnsBox">
                 <button id="addBtn" class="operBtn" value="add">+</button>
                 <button id="sbtrBtn" class="operBtn" value="subtract">-</button>
+                <button id="eqlBtn" class="othrBtn">=</button>
                 <button id="multBtn" class="operBtn" value="multiply">x</button>
                 <button id="divBtn" class="operBtn" value="divide">/</button>
             </div>
-            <button id="eqlBtn" class="othrBtn">=</button>
-            <button id="clrBtn" class="othrBtn">Clear</button>
+
+            
 
         </div>
     </body>

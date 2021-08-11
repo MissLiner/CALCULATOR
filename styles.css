@@ -1,41 +1,70 @@
 * {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Sen, Arial, sans-serif;
     text-align:center;
 }
 
 button {
-    border-style: outset;
-    border-color:lightgrey;
+    background-color: white;
     text-align: center;
+    height:50px;
+    font-size:25px;
+    border:none;
 
 }
 
 #calcBox {
-    display: grid;
-    width: 200px;
+    display: flexbox;
+    width: 400px;
+    height: 450px;
     margin: auto;
+    border-style: solid;
+    border-width:2px;
 }
 
 #display {
-    border-style: inset;
-    height: 20px;
-    width: 200px;
+ 
+    height: 50px;
+    width:auto;
+    margin: auto;
+    text-align:center;
+    font-size:xx-large;
+    letter-spacing: 4px;
+    margin-top: 20px;
+}
+#topBtnsBox {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
     margin: auto;
 }
 
 #numBtnsBox {
     display: grid;
-    width: 200px;
+    width: 100%;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    margin: auto;
+}
+
+#othBtnsBox {
+    display: grid;
+    width: 100%;
     grid-template-columns: 33.3% 33.3% 33.3%;
     margin: auto;
 }
 
 #operBtnsBox {
     display: grid;
-    width: 200px;
-    grid-template-columns: 50% 50%;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
     margin: auto;
     align-items: center;
+}
+
+#eqlBtn {
+    height: 100%;
+    grid-row: span 2;
+    
 }
 
 
