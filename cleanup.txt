@@ -6,3 +6,6 @@ configs:
     4. OPERAND ENTRY: num1 = "X", num2 = "", num3 = "", operand = "X"
     5. SECOND VAR ENTRY: num1 = "X..", num2 = "X", num3 = "", operand = "X"
     6. CALCULATION & RESET:num1 = "X", num2 = "X", num3 = "X", operand = "X"
+
+
+    operand = "start" 

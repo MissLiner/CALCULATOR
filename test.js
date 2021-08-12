@@ -16,6 +16,8 @@ const decBtn = document.getElementById("decBtn");
 const delBtn = document.getElementById("delBtn");
 const negBtn = document.getElementById("negBtn");
 const background = document.getElementById("background");
+const notepad = document.getElementById("notepad");
+const clearPadBtn = document.getElementById("clearPadBtn");
 
 const allButtons = document.querySelectorAll("button");
 allButtons.forEach((button) => {
@@ -33,58 +35,67 @@ allButtons.forEach((button) => {
 let num1 = "";
 let num2 = "";
 let result = "";
-let operand = "start";
-let displayValue;
+let operand = "";
 
-updateDisplay = (content) => display.textContent = content;
+updateDisplay = (content) => {
+    display.textContent = content;
+    operBtns.forEach((button) => {
+        button.classList.remove("highlight");
+    })
+    //background.textContent += content;
+}
 
 function operate(operator, a, b) {
-    if (operator === "+") { return (a + b); }
+    if (operand === "/" && num2 === "0") {
+        alert("Oops! Dividing by zero could break the universe . . .");
+    }
+    else if (operator === "+") { return (a + b); }
     else if (operator === "-") { return (a - b); }
     else if (operator === "x") { return (a * b); }
-    else if (operator === "/") { 
-        if (b === 0) {
-            display.textContent = "Dividing by 0 is a dangerous game!!";
-        }
-        else {
-            return (a / b); 
-        }
-
-    }
+    else if (operator === "/") { return (a / b); }
 }
 
 numBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
+            if (operand === "" && num1.length < 6) {
+                num1 += button.textContent;
+                updateDisplay(num1);
+            }
+        
+            else if (operand === "start") {
+                operand = "";
+                num1 = button.textContent;
+                updateDisplay(num1);
+            }
+            else if (operand !== "" && num2.length < 6) {
+                num2 += button.textContent;
+                updateDisplay(num2)
+            }
 
-        if (operand === "start") {
-              num1 = button.textContent;
-              operand = "";
-              updateDisplay(num1);
-        }
-        else {
-            num2 += button.textContent;
-            updateDisplay(num2)
-        }
-    });
+            //else {
+            //    num2
+            //}
+    })
 })
 
 operBtns.forEach((button) => {
     button.addEventListener('click', () => {
-   
         if (num2 == "") {
             num1 = parseFloat(num1);
             operand = button.textContent;
+            button.classList.add("highlight");
         }
         else if (num1 !== "" && num2 !== "" && operand !== "") {
             num2 = parseFloat(num2);
             result = operate(operand, num1, num2);
             num1 = Math.round(result * 100) / 100;
-            background.textContent += num1;
+            notepad.textContent += num1 + operand + num2 + "=" + result + "\r\n";
+            updateDisplay(num1);
             num2 = "";
             result = "";
-            updateDisplay(num1);
             operand = button.textContent;
         }
+        //background.textContent += button.textContent;
     })
 })
 
@@ -93,13 +104,14 @@ eqlBtn.addEventListener('click', () => {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
     result = operate(operand, num1, num2);
+    notepad.textContent += num1 + operand + num2 + "=" + result + "\r";
     num1 = Math.round(result * 100) / 100;
-    background.textContent += num1;
+    //background.textContent += num1;
     num2 = "";
     result = "";
     operand = "start";
     updateDisplay(num1);
-    }
+}
 })
 
 clrBtn.addEventListener('click', () => {
@@ -107,8 +119,11 @@ clrBtn.addEventListener('click', () => {
     num1 = "";
     num2 = "";
     result = "";
-    operand = "";
+    operand = "start";
     background.textContent = "";
+    operBtns.forEach((button) => {
+        button.classList.remove("highlight");
+    })
 });
 
 delBtn.addEventListener('click', () => {
@@ -172,6 +187,10 @@ negBtn.addEventListener('click', () => {
         num2 = -num2;
         updateDisplay(num2);
     }
+})
+
+clearPadBtn.addEventListener('click', () => {
+    notepad.textContent = "";
 })
 
 
