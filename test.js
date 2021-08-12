@@ -24,7 +24,7 @@ allButtons.forEach((button) => {
         console.log(button.id);
         console.log(num1);
         console.log(num2);
-        console.log(num3);
+        console.log(result);
         console.log(operand);
 
     })
@@ -32,8 +32,8 @@ allButtons.forEach((button) => {
 
 let num1 = "";
 let num2 = "";
-let num3 = "";
-let operand = "";
+let result = "";
+let operand = "start";
 let displayValue;
 
 updateDisplay = (content) => display.textContent = content;
@@ -55,11 +55,8 @@ function operate(operator, a, b) {
 
 numBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-        if (operand == "") {
-            num1 += button.textContent;
-            updateDisplay(num1);
-        }
-        else if (operand === "restart") {
+
+        if (operand === "start") {
               num1 = button.textContent;
               operand = "";
               updateDisplay(num1);
@@ -80,11 +77,11 @@ operBtns.forEach((button) => {
         }
         else if (num1 !== "" && num2 !== "" && operand !== "") {
             num2 = parseFloat(num2);
-            num3 = operate(operand, num1, num2);
-            num1 = Math.round(num3 * 100) / 100;
+            result = operate(operand, num1, num2);
+            num1 = Math.round(result * 100) / 100;
             background.textContent += num1;
             num2 = "";
-            num3 = "";
+            result = "";
             updateDisplay(num1);
             operand = button.textContent;
         }
@@ -95,12 +92,12 @@ eqlBtn.addEventListener('click', () => {
     if (num2 !== "") {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
-    num3 = operate(operand, num1, num2);
-    num1 = Math.round(num3 * 100) / 100;
+    result = operate(operand, num1, num2);
+    num1 = Math.round(result * 100) / 100;
     background.textContent += num1;
     num2 = "";
-    num3 = "";
-    operand = "restart";
+    result = "";
+    operand = "start";
     updateDisplay(num1);
     }
 })
@@ -109,12 +106,13 @@ clrBtn.addEventListener('click', () => {
     display.textContent = "0";
     num1 = "";
     num2 = "";
-    num3 = "";
+    result = "";
     operand = "";
+    background.textContent = "";
 });
 
 delBtn.addEventListener('click', () => {
-    if (operand !== "restart") {
+    if (operand !== "start") {
     if (num2 > 0) {
         num2 = num2.toString();
         if (num2.length < 2) {
@@ -145,29 +143,27 @@ delBtn.addEventListener('click', () => {
 
 decBtn.addEventListener('click', () => {
     if (display.textContent.includes(".") === false || operand !== "") {
-        if (operand == "") {
-            num1 += ".";
-            updateDisplay(num1);
-        }
-        else if (operand === "restart") {
+        if (operand === "start") {
             num1 = "0.";
             operand = "";
             updateDisplay(num1);
         }
+        else if (operand == "") {
+            num1 += ".";
+            updateDisplay(num1);
+        }
         else if (operand !== "" && num2 === "") {
-              num2 = "0.";
-              updateDisplay(num2);
+            num2 = "0.";
+            updateDisplay(num2);
         }
         else {
             num2 += ".";
             updateDisplay(num2)
-
         }
     }
 })
 
 negBtn.addEventListener('click', () => {
-    if (operand !== "restart") {
     if (num1 !== "" && num2 === "" && operand === "") {
         num1 = -num1;
         updateDisplay(num1);
@@ -176,7 +172,6 @@ negBtn.addEventListener('click', () => {
         num2 = -num2;
         updateDisplay(num2);
     }
-}
 })
 
 
