@@ -36,15 +36,20 @@
     background-image: linear-gradient(0deg, #f5eec4 47.37%, #d6d3c5 47.37%, #d6d3c5 50%, #f5eec4 50%, #f5eec4 97.37%, #d6d3c5 97.37%, #d6d3c5 100%);
     background-size: 38.00px 38.00px;
     top: 20%;
-    left: 13%;
+    left: 15%;
     word-wrap: break-word; 
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
 }
 
 #clearPadBtn {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
+    position:absolute;
+    left: 17%;
+    top: 78%;
     font-size: 20px;
+    
+
 
 }
 
@@ -60,16 +65,15 @@ button {
 #background {
     z-index:-1;
     height:100%;
-    width: 100%;
-    width:60%;
-    left:20%;
-    margin-top: 150px;
+    width:auto;
+    left:60%;
+    margin-top: 0px;
     position: absolute;
     text-align: left;
     overflow-wrap: anywhere;
     word-wrap: break-word; 
     font-size: 60px;
-    color:rgb(245, 245, 245);
+    color:rgb(231, 229, 229);
 }
 
 #calcBox {
@@ -103,6 +107,7 @@ button {
     width: 100%;
     grid-template-columns: 50% 50%;
     margin: auto;
+    margin-top: 3%;
 }
 
 #numBtnsBox {
