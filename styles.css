@@ -48,9 +48,16 @@
     left: 17%;
     top: 78%;
     font-size: 20px;
-    
+}
 
-
+@media (max-width: 1008px) {
+    #notepad {
+        margin-right:447px;
+        left:13%;
+    }
+    #clearPadBtn {
+        left: 15%;
+    }
 }
 
 button {
@@ -59,7 +66,6 @@ button {
     font-size:25px;
     border:none;
     background: none;
-
 }
 
 #background {
