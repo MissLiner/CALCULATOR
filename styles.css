@@ -11,6 +11,12 @@ button {
     background: none;
 }
 
+.hidden-message {
+    display:none;
+    font-size: 20px;
+    color: red;
+}
+
 .highlight {
     background-color:yellowgreen;
     size: 105%;
@@ -65,11 +71,29 @@ button {
 }
 
 @media (max-width: 1008px) {
+    
+    #head-left {
+        left: 10px;
+    }
+    #head-right {
+        display: none;
+    }
     #notepad {
-        left:13%;
+        display: none;
     }
     #clear-pad-btn {
-        left: 15%;
+        display: none;
+    }
+    #calculator-box {
+        position: relative;
+        left: 305px;
+        margin: none;
+        top: 200px;
+        -ms-transform: none;
+        transform: none;
+    }
+    .hidden-message {
+        display:inline;
     }
 }
 

@@ -93,7 +93,11 @@ operatorBtns.forEach((button) => {
 
         else if (num2 === '' && operand !== '') {
             operand = button.textContent;
-            
+            operatorBtns.forEach((button) => {
+                button.classList.remove('highlight');
+            })
+            button.classList.add('highlight');
+
         }
         else if (num1 !== '' && num2 !== '' && operand !== '') {
             num2 = parseFloat(num2);
