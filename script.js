@@ -46,7 +46,7 @@ updateDisplay = (content) => {
 }
 
 function operate(operator, a, b) {
-    if (operand === '/' && num2 === '0') {
+    if (operator == '/' && b == '0') {
         alert('Oops! Dividing by zero could break the universe . . .');
     }
     else if (operator === '+') { return Math.round((a + b) * 100) / 100;}
