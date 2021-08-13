@@ -1,46 +1,49 @@
 <!DOCTYPE html>
+
 <html>
     <head>
+        <meta charset="utf-8">
+
         <title>Calculator</title>
+
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+
         <script src="test.js" defer></script>
     </head>
 
     <body>
+
         <div id="background"></div>
-        <h1 id="headLeft">CALCULATOR</h1>
-        <h1 id="headRight">CALCULATOR</h1>
-            <div id="notepad"></div>
-            <button id=clearPadBtn>Clear pad</button>
-        
-        <div id="calcBox">
-            
+
+        <h1 id="head-left">CALCULATOR</h1>
+        <h1 id="head-right" class="backwards-text">CALCULATOR</h1>
+
+        <div id="notepad"></div>
+        <button id="clear-pad-btn">Clear pad</button>
+
+        <div id="calculator-box">
             <div id="display">0</div>
-            <div id="topBtnsBox">
-                <button id="clrBtn" class="othrBtn">Clear</button>
-                <button id="delBtn" class="othrBtn">Delete</button>
+            <div id="top-btns-box">
+                <button id="clear-btn" class="other-btn">Clear</button>
+                <button id="delete-btn" class="other-btn">Delete</button>
             </div>
-            <div id="operBtnsBox">
-                <button id="addBtn" class="operBtn" value="add">+</button>
-                <button id="sbtrBtn" class="operBtn" value="subtract">-</button>
-                <button id="multBtn" class="operBtn" value="multiply">x</button>
-                <button id="divBtn" class="operBtn" value="divide">/</button>
-               
+            <div id="operator-btns-box">
+                <button id="add-btn" class="operator-btn">+</button>
+                <button id="subtract-btn" class="operator-btn">-</button>
+                <button id="multiply-btn" class="operator-btn">x</button>
+                <button id="divide-btn" class="operator-btn">/</button>
             </div>
-            <div id="numBtnsBox"></div>
-            <div id="othBtnsBox">
-                <button id="decBtn">.</button>
-                <button id="numBtn0" class="numBtn">0</button>
-                <button id="negBtn">+ / -</button>
-                <button id="eqlBtn" class="othrBtn">=</button>
+            <div id="number-btns-box"></div>
+            <div id="other-btns-box">
+                <button id="decimal-btn">.</button>
+                <button id="number-btn0" class="number-btn">0</button>
+                <button id="negative-btn">+ / -</button>
+                <button id="equal-btn">=</button>
             </div>
-
-
-            
-
         </div>
+
     </body>
 </html>

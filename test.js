@@ -1,26 +1,26 @@
-const display = document.getElementById("display");
-const calcBox = document.querySelector('#numBtnsBox');
+const display = document.getElementById('display');
+const numberBox = document.querySelector('#number-btns-box');
 
 for (let i = 1; i <= 9; i++) {
-    let numBtn = document.createElement('button');
-    numBtn.textContent = `${i}`;
-    numBtn.value = `${i}`;
-    numBtn.className = "numBtn";
-    numBtn.id = `numBtn${i}`;
-    calcBox.appendChild(numBtn);
+    let numberBtn = document.createElement('button');
+    numberBtn.textContent = `${i}`;
+    numberBtn.value = `${i}`;
+    numberBtn.className = 'number-btn';
+    numberBtn.id = `number-btn${i}`;
+    numberBox.appendChild(numberBtn);
 }
 
-const numberBtns = document.querySelectorAll(".numBtn");
-const operatorBtns = document.querySelectorAll(".operBtn");
-const equalBtn = document.getElementById("eqlBtn");
-const clearBtn = document.getElementById("clrBtn");
-const decimalBtn = document.getElementById("decBtn");
-const deleteBtn = document.getElementById("delBtn");
-const negativeBtn = document.getElementById("negBtn");
-const background = document.getElementById("background");
-const notepad = document.getElementById("notepad");
-const clearPadBtn = document.getElementById("clearPadBtn");
-const allButtons = document.querySelectorAll("button");
+const numberBtns = document.querySelectorAll('.number-btn');
+const operatorBtns = document.querySelectorAll('.operator-btn');
+const equalBtn = document.getElementById('equal-btn');
+const clearBtn = document.getElementById('clear-btn');
+const decimalBtn = document.getElementById('decimal-btn');
+const deleteBtn = document.getElementById('delete-btn');
+const negativeBtn = document.getElementById('negative-btn');
+const background = document.getElementById('background');
+const notepad = document.getElementById('notepad');
+const clearPadBtn = document.getElementById('clear-pad-btn');
+const allButtons = document.querySelectorAll('button');
 
 allButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -33,45 +33,50 @@ allButtons.forEach((button) => {
     })
 })
 
-let num1 = "";
-let num2 = "";
-let result = "";
-let operand = "";
+let num1 = '';
+let num2 = '';
+let result = '';
+let operand = '';
 
 updateDisplay = (content) => {
     display.textContent = content;
     operatorBtns.forEach((button) => {
-        button.classList.remove("highlight");
+        button.classList.remove('highlight');
     })
 }
 
-function operate(operator, a, b) {
-    if (operand === "/" && num2 === "0") {
-        alert("Oops! Dividing by zero could break the universe . . .");
-    }
-    else if (operator === "+") { return Math.round((a + b) * 100) / 100;}
-    else if (operator === "-") { return Math.round((a - b) * 100) / 100;}
-    else if (operator === "x") { return Math.round((a * b) * 100) / 100;}
-    else if (operator === "/") { return Math.round((a / b) * 100) / 100;}
+// highlightOperator = () => {
+//     operatorBtns.forEach((button) => {
+//         button.classList.remove('highlight');
+//     })
+//     button.classList.add('highlight');
+// }
 
-    Math.round((a + b) * 100) / 100;
+function operate(operator, a, b) {
+    if (operand === '/' && num2 === '0') {
+        alert('Oops! Dividing by zero could break the universe . . .');
+    }
+    else if (operator === '+') { return Math.round((a + b) * 100) / 100;}
+    else if (operator === '-') { return Math.round((a - b) * 100) / 100;}
+    else if (operator === 'x') { return Math.round((a * b) * 100) / 100;}
+    else if (operator === '/') { return Math.round((a / b) * 100) / 100;}
 }
 
 numberBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-            if (operand === "" && num1.length < 6) {
-                if (num1 === "0") {num1 = '';}
+            if (operand === '' && num1.length < 6) {
+                if (num1 === '0') {num1 = '';}
                 num1 += button.textContent;
                 updateDisplay(num1);
             }
         
-            else if (operand === "start") {
-                operand = "";
+            else if (operand === 'start') {
+                operand = '';
                 num1 = button.textContent;
                 updateDisplay(num1);
             }
-            else if (operand !== "" && num2.length < 6) {
-                if (num2 === "0") {num2 = '';}
+            else if (operand !== '' && num2.length < 6) {
+                if (num2 === '0') {num2 = '';}
                 num2 += button.textContent;
                 updateDisplay(num2)
             }
@@ -80,18 +85,23 @@ numberBtns.forEach((button) => {
 
 operatorBtns.forEach((button) => {
     button.addEventListener('click', () => {
-        if (num1 !== "" && num2 === "") {
+        if (num1 !== '' && num2 === '') {
             num1 = parseFloat(num1);
             operand = button.textContent;
-            button.classList.add("highlight");
+            button.classList.add('highlight');
         }
-        else if (num1 !== "" && num2 !== "" && operand !== "") {
+
+        else if (num2 === '' && operand !== '') {
+            operand = button.textContent;
+            
+        }
+        else if (num1 !== '' && num2 !== '' && operand !== '') {
             num2 = parseFloat(num2);
             result = operate(operand, num1, num2);
-            notepad.textContent += num1 + operand + num2 + "=" + result + "\r\n";
+            notepad.textContent += num1 + operand + num2 + '=' + result;
             num1 = result;
-            num2 = "";
-            result = "";
+            num2 = '';
+            result = '';
             operand = button.textContent;
             background.textContent += num1;
             updateDisplay(num1);
@@ -100,38 +110,38 @@ operatorBtns.forEach((button) => {
 })
 
 equalBtn.addEventListener('click', () => {
-    if (num2 !== "") {
+    if (num2 !== '') {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
     result = operate(operand, num1, num2);
-    notepad.textContent += num1 + operand + num2 + "=" + result + "\r";
+    notepad.textContent += num1 + operand + num2 + '=' + result + '\r';
     num1 = result;
-    num2 = "";
-    result = "";
-    operand = "start";
-    background.textContent += num1 + "  ";
+    num2 = '';
+    result = '';
+    operand = 'start';
+    background.textContent += num1 + '  ';
     updateDisplay(num1);
     }
 })
 
 clearBtn.addEventListener('click', () => {
-    display.textContent = "0";
-    num1 = "";
-    num2 = "";
-    result = "";
-    operand = "start";
-    background.textContent = "";
+    display.textContent = '0';
+    num1 = '';
+    num2 = '';
+    result = '';
+    operand = 'start';
+    background.textContent = '';
     operBtns.forEach((button) => {
-        button.classList.remove("highlight");
+        button.classList.remove('highlight');
     })
 });
 
 deleteBtn.addEventListener('click', () => {
-    if (operand !== "start") {
+    if (operand !== 'start') {
     if (num2 > 0) {
         num2 = num2.toString();
         if (num2.length < 2) {
-            num2 = "";
+            num2 = '';
             updateDisplay('0');
         }
         else {
@@ -141,11 +151,11 @@ deleteBtn.addEventListener('click', () => {
         }
     }
 
-    else if (num1 > 0 && num2 === "") {
+    else if (num1 > 0 && num2 === '') {
         num1 = num1.toString();
         if (num1.length < 2) {
-            num1 = "";
-            updateDisplay("0");
+            num1 = '';
+            updateDisplay('0');
         }
         else {
             num1 = num1.slice(0, -1);
@@ -157,40 +167,38 @@ deleteBtn.addEventListener('click', () => {
 })
 
 decimalBtn.addEventListener('click', () => {
-    if (display.textContent.includes(".") === false || operand !== "") {
-        if (operand === "start") {
-            num1 = "0.";
-            operand = "";
+    if (display.textContent.includes('.') === false || operand !== '') {
+        if (operand === 'start') {
+            num1 = '0.';
+            operand = '';
             updateDisplay(num1);
         }
-        else if (operand == "") {
-            num1 += ".";
+        else if (operand == '') {
+            num1 += '.';
             updateDisplay(num1);
         }
-        else if (operand !== "" && num2 === "") {
-            num2 = "0.";
+        else if (operand !== '' && num2 === '') {
+            num2 = '0.';
             updateDisplay(num2);
         }
         else {
-            num2 += ".";
+            num2 += '.';
             updateDisplay(num2)
         }
     }
 })
 
 negativeBtn.addEventListener('click', () => {
-    if (num1 !== "" && num2 === "" && operand === "") {
+    if (num1 !== '' && num2 === '' && operand === '') {
         num1 = -num1;
         updateDisplay(num1);
     }
-    else if (num2 !== "") {
+    else if (num2 !== '') {
         num2 = -num2;
         updateDisplay(num2);
     }
 })
 
 clearPadBtn.addEventListener('click', () => {
-    notepad.textContent = "";
+    notepad.textContent = '';
 })
-
-

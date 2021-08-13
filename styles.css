@@ -3,63 +3,6 @@
     text-align:center;
 }
 
-#headLeft {
-    writing-mode: vertical-lr;
-    position:absolute;
-    top: 0px;
-    text-orientation: upright;
-    font-size: 55px;
-    margin-left: 50px;
-    margin-top: 0px;
-    float:initial;
-}
-
-#headRight {
-    writing-mode: vertical-rl;
-    position:absolute;
-    top: 0px;
-    right: 50px;
-    text-orientation:upright;
-    font-size: 55px;
-    transform: scale(1, -1);
-    -moz-transform: scale(1, -1);
-    -webkit-transform: scale(1, -1);
-    -o-transform: scale(1, -1);
-    -ms-transform: scale(1, -1);
-    transform: scale(1, -1);
-}
-
-#notepad {
-    position: absolute;
-    height:400px;
-    width:150px;
-    background-image: linear-gradient(0deg, #f5eec4 47.37%, #d6d3c5 47.37%, #d6d3c5 50%, #f5eec4 50%, #f5eec4 97.37%, #d6d3c5 97.37%, #d6d3c5 100%);
-    background-size: 38.00px 38.00px;
-    top: 20%;
-    left: 15%;
-    word-wrap: break-word; 
-    justify-content: space-between;
-    flex-direction: column;
-    display: flex;
-}
-
-#clearPadBtn {
-    position:absolute;
-    left: 17%;
-    top: 78%;
-    font-size: 20px;
-}
-
-@media (max-width: 1008px) {
-    #notepad {
-        margin-right:447px;
-        left:13%;
-    }
-    #clearPadBtn {
-        left: 15%;
-    }
-}
-
 button {
     text-align: center;
     height:50px;
@@ -68,27 +11,89 @@ button {
     background: none;
 }
 
+.highlight {
+    background-color:yellowgreen;
+    size: 105%;
+}
+
+.backwards-text {
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    transform: scale(1, -1);
+}
+
+#head-left {
+    position:absolute;
+    float:initial;
+    top: 0px;
+    left: 50px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-size: 55px;
+}
+
+#head-right {
+    position:absolute;
+    top: 0px;
+    right: 50px;
+    writing-mode: vertical-rl;
+    text-orientation:upright;
+    font-size: 55px;
+}
+
+#notepad {
+    position: absolute;
+    height:400px;
+    width:150px;
+    top: 20%;
+    left: 15%;
+    background-image: linear-gradient(0deg, #f5eec4 47.37%, #d6d3c5 47.37%, #d6d3c5 50%, #f5eec4 50%, #f5eec4 97.37%, #d6d3c5 97.37%, #d6d3c5 100%);
+    background-size: 38.00px 38.00px;
+    word-break:break-word;
+    justify-content: space-between;
+    word-spacing:150px;
+}
+
+#clear-pad-btn {
+    position:absolute;
+    left: 17%;
+    top: 78%;
+    font-size: 20px;
+}
+
+@media (max-width: 1008px) {
+    #notepad {
+        left:13%;
+    }
+    #clear-pad-btn {
+        left: 15%;
+    }
+}
+
 #background {
+    position: absolute;
     z-index:-1;
     height:100%;
     width:auto;
     left:60%;
     margin-top: 0px;
-    position: absolute;
     text-align: left;
-    overflow-wrap: anywhere;
     word-wrap: break-word; 
     font-size: 60px;
     color:rgb(231, 229, 229);
+    word-break: break-all;
 }
 
-#calcBox {
+#calculator-box {
+    position: absolute;
     display: flexbox;
     z-index: 5;
     width: 400px;
     height: 525px;
     margin: 0;
-    position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
@@ -99,7 +104,6 @@ button {
 }
 
 #display {
- 
     height: 50px;
     width:auto;
     margin: auto;
@@ -108,23 +112,25 @@ button {
     letter-spacing: 4px;
     margin-top: 20px;
 }
-#topBtnsBox {
+#top-btns-box {
     display: grid;
     width: 100%;
-    grid-template-columns: 50% 50%;
     margin: auto;
     margin-top: 3%;
+    grid-template-columns: 50% 50%;
+ 
 }
 
-#numBtnsBox {
+#number-btns-box {
     display: grid;
-    width: 100%;
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    width: 100%;    
     margin: auto;
     margin-top: 5%;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+
 }
 
-#othBtnsBox {
+#other-btns-box {
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
@@ -133,40 +139,32 @@ button {
     
 }
 
-.operBtn {
+.operator-btn {
+    width: 70%;
+    margin: auto;
     font-size: 25px;
     text-align: center;
     border: solid;
     border-width: 2px;
     border-radius: 10%;
-    
-    width: 70%;
-    margin: auto;
+
 }
 
-#operBtnsBox {
+#operator-btns-box {
     display: grid;
     width: 90%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
 }
 
-#eqlBtn {
+#equal-btn {
     height: 100%;
     width: 70%;
-    grid-column: span 3;
+    margin:auto;
+    margin-top: 5%;grid-column: span 3;
     border: solid;
     border-width: 2px;
     border-radius: 10%;
-    margin:auto;
-    margin-top: 5%;
 
-    
 }
-
-.highlight {
-    background-color:yellowgreen;
-    size: 105%;
-}
-
