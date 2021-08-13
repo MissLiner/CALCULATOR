@@ -45,13 +45,6 @@ updateDisplay = (content) => {
     })
 }
 
-// highlightOperator = () => {
-//     operatorBtns.forEach((button) => {
-//         button.classList.remove('highlight');
-//     })
-//     button.classList.add('highlight');
-// }
-
 function operate(operator, a, b) {
     if (operand === '/' && num2 === '0') {
         alert('Oops! Dividing by zero could break the universe . . .');
@@ -85,24 +78,18 @@ numberBtns.forEach((button) => {
 
 operatorBtns.forEach((button) => {
     button.addEventListener('click', () => {
+        for (var i = 0, len = operatorBtns.length; i < len; i++) {
+            (operatorBtns[i]).classList.remove('highlight');
+        }
         if (num1 !== '' && num2 === '') {
             num1 = parseFloat(num1);
             operand = button.textContent;
             button.classList.add('highlight');
         }
-
-        else if (num2 === '' && operand !== '') {
-            operand = button.textContent;
-            operatorBtns.forEach((button) => {
-                button.classList.remove('highlight');
-            })
-            button.classList.add('highlight');
-
-        }
         else if (num1 !== '' && num2 !== '' && operand !== '') {
             num2 = parseFloat(num2);
             result = operate(operand, num1, num2);
-            notepad.textContent += num1 + operand + num2 + '=' + result;
+            notepad.textContent += " " + num1 + operand + num2 + '=' + result;
             num1 = result;
             num2 = '';
             result = '';
@@ -118,7 +105,7 @@ equalBtn.addEventListener('click', () => {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
     result = operate(operand, num1, num2);
-    notepad.textContent += num1 + operand + num2 + '=' + result + '\r';
+    notepad.textContent += ' ' + num1 + operand + num2 + '=' + result + '\r';
     num1 = result;
     num2 = '';
     result = '';
