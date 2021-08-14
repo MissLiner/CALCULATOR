@@ -57,21 +57,26 @@ function operate(operator, a, b) {
 
 numberBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-            if (operand === '' && num1.length < 6) {
-                if (num1 === '0') {num1 = '';}
-                num1 += button.textContent;
-                updateDisplay(num1);
+            if (!operand && num1.length < 6) {
+                if (num1 === '0') {
+                    num1 = '';
+                    num1 += button.textContent;
+                    updateDisplay(num1);
+                }
+                else {
+                    num1 += button.textContent;
+                    updateDisplay(num1);
+                }
             }
-        
             else if (operand === 'start') {
                 operand = '';
                 num1 = button.textContent;
                 updateDisplay(num1);
             }
-            else if (operand !== '' && num2.length < 6) {
+            else if (operand && num2.length < 6) {
                 if (num2 === '0') {num2 = '';}
                 num2 += button.textContent;
-                updateDisplay(num2)
+                updateDisplay(num2);
             }
     })
 })
@@ -81,12 +86,12 @@ operatorBtns.forEach((button) => {
         for (var i = 0, len = operatorBtns.length; i < len; i++) {
             (operatorBtns[i]).classList.remove('highlight');
         }
-        if (num1 !== '' && num2 === '') {
+        if (num1 && !num2) {
             num1 = parseFloat(num1);
             operand = button.textContent;
             button.classList.add('highlight');
         }
-        else if (num1 !== '' && num2 !== '' && operand !== '') {
+        else if (num1 && num2 && operand) {
             num2 = parseFloat(num2);
             result = operate(operand, num1, num2);
             notepad.textContent += " " + num1 + operand + num2 + '=' + result;
@@ -101,7 +106,7 @@ operatorBtns.forEach((button) => {
 })
 
 equalBtn.addEventListener('click', () => {
-    if (num2 !== '') {
+    if (num2) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
     result = operate(operand, num1, num2);
@@ -142,7 +147,7 @@ deleteBtn.addEventListener('click', () => {
         }
     }
 
-    else if (num1 > 0 && num2 === '') {
+    else if (num1 > 0 && !num2) {
         num1 = num1.toString();
         if (num1.length < 2) {
             num1 = '';
@@ -164,11 +169,11 @@ decimalBtn.addEventListener('click', () => {
             operand = '';
             updateDisplay(num1);
         }
-        else if (operand == '') {
+        else if (!operand) {
             num1 += '.';
             updateDisplay(num1);
         }
-        else if (operand !== '' && num2 === '') {
+        else if (operand && !num2) {
             num2 = '0.';
             updateDisplay(num2);
         }
@@ -180,11 +185,11 @@ decimalBtn.addEventListener('click', () => {
 })
 
 negativeBtn.addEventListener('click', () => {
-    if (num1 !== '' && num2 === '' && operand === '') {
+    if (num1 && !num2 && !operand) {
         num1 = -num1;
         updateDisplay(num1);
     }
-    else if (num2 !== '') {
+    else if (num2) {
         num2 = -num2;
         updateDisplay(num2);
     }
