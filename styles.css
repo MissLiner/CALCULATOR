@@ -71,7 +71,6 @@ button {
 }
 
 @media (max-width: 1008px) {
-    
     #head-left {
         left: 10px;
     }
@@ -79,7 +78,7 @@ button {
         display: none;
     }
     #notepad {
-        display: none;
+        left:700px;
     }
     #clear-pad-btn {
         display: none;
