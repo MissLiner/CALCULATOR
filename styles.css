@@ -78,7 +78,9 @@ button {
         display: none;
     }
     #notepad {
-        left:700px;
+        position: absolute;
+        z-index:-1;
+        left:80%;
     }
     #clear-pad-btn {
         display: none;
@@ -86,6 +88,29 @@ button {
     #calculator-box {
         position: relative;
         left: 305px;
+        margin: none;
+        top: 200px;
+        -ms-transform: none;
+        transform: none;
+    }
+    .hidden-message {
+        display:inline;
+    }
+}
+
+@media (max-width: 850px) {
+    #head-left {
+        left: 0px;
+    }
+    #head-right {
+        display: none;
+    }
+    #clear-pad-btn {
+        display: none;
+    }
+    #calculator-box {
+        float:left;
+        left: none;
         margin: none;
         top: 200px;
         -ms-transform: none;
