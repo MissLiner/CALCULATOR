@@ -126,7 +126,7 @@ operatorBtns.forEach((button) => {
         else if (num1 && num2 && operand) {
             num2 = parseFloat(num2);
             result = operate(operand, num1, num2);
-            updateNotepad
+            updateNotepad();
             num1 = result;
             num2 = '';
             result = '';
