@@ -25,6 +25,10 @@ const allButtons = document.querySelectorAll('button');
 allButtons.forEach((button) => {
     button.addEventListener('click', () => {
         background.textContent += button.textContent;
+        button.classList.add('enlarge');
+        setTimeout(function() {
+            button.classList.remove('enlarge');
+        }, 300);
         console.log(button.id);
         console.log(num1);
         console.log(num2);
@@ -117,6 +121,10 @@ equalBtn.addEventListener('click', () => {
     result = '';
     operand = 'start';
     background.textContent += num1 + '  ';
+    equalBtn.classList.add('enlarge');
+        setTimeout(function() {
+            equalBtn.classList.remove('enlarge');
+        }, 300);
     updateDisplay(num1);
     }
 })
@@ -128,7 +136,7 @@ clearBtn.addEventListener('click', () => {
     result = '';
     operand = 'start';
     background.textContent = '';
-    operBtns.forEach((button) => {
+    operatorBtns.forEach((button) => {
         button.classList.remove('highlight-yg');
     })
 });
@@ -139,16 +147,16 @@ deleteBtn.addEventListener('click', () => {
         num2 = num2.toString();
         if (num2.length < 2) {
             num2 = '';
-            updateDisplay('0');
+            display.textContent = 0;
         }
         else {
             num2 = num2.slice(0, -1);
             num2 = parseFloat(num2);
-            updateDisplay(num2);
+            display.textContent = num2;
         }
     }
 
-    else if (num1 > 0 && !num2) {
+    else if (num1 > 0 && !operand) {
         num1 = num1.toString();
         if (num1.length < 2) {
             num1 = '';

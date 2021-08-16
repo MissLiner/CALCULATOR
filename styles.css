@@ -18,13 +18,11 @@ button {
 }
 
 .highlight-yg {
-    background-color:yellowgreen;
-    transform: scale(1.1, 1.1);
+    color:yellowgreen;
 }
 
-.highlight-orange {
-    background-color: salmon;
-    transform: scale(1.1, 1.1);
+.enlarge {
+    transform: scale(1.3, 1.3);
 }
 
 .backwards-text {
