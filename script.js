@@ -89,22 +89,27 @@ allButtons.forEach((button) => {
 
 numberBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-            if ((!operand || operand === 'start') && num1.length < 6) {
+        if (operand === 'start') {
+            operand = '';
+            num1 = button.textContent;
+            updateDisplay(num1);
+        }
+        else if (!operand && num1.length < 6) {
+            if (num1 === '0') {
+                num1 = '';
+                num1 += button.textContent;
+            }
+            else {
                 operand = '';
-                if (num1 === '0') {
-                    num1 = '';
-                    num1 += button.textContent;
-                }
-                else {
-                    num1 += button.textContent;
-                }
-                updateDisplay(num1);
+                num1 += button.textContent;
             }
-            else if (operand && num2.length < 6) {
-                if (num2 === '0') {num2 = '';}
-                num2 += button.textContent;
-                updateDisplay(num2);
-            }
+            updateDisplay(num1);
+        }
+        else if (operand && num2.length < 6) {
+            if (num2 === '0') {num2 = '';}
+            num2 += button.textContent;
+            updateDisplay(num2);
+        }
     })
 })
 
@@ -133,18 +138,17 @@ operatorBtns.forEach((button) => {
 })
 
 equalBtn.addEventListener('click', () => {
-    animateButton(equalBtn);
-    
     if (num2) {
-    num1 = parseFloat(num1);
-    num2 = parseFloat(num2);
-    result = operate(operand, num1, num2);
-    updateNotepad();
-    num1 = result;
-    num2 = '';
-    result = '';
-    operand = 'start';
-    updateDisplay(num1);
+        num1 = parseFloat(num1);
+        num2 = parseFloat(num2);
+        result = operate(operand, num1, num2);
+        updateNotepad();
+
+        num1 = result;
+        num2 = '';
+        result = '';
+        operand = 'start';
+        updateDisplay(num1);
     }
 })
 
@@ -153,7 +157,7 @@ clearBtn.addEventListener('click', () => {
     num1 = '';
     num2 = '';
     result = '';
-    operand = 'start';
+    operand = '';
     background.textContent = '';
     operatorBtns.forEach((button) => {
         button.classList.remove('highlight-yg');
