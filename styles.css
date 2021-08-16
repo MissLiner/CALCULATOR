@@ -156,16 +156,17 @@ button {
     }
     #notepad {
         position:absolute;
-        left: 10%;
-        -ms-transform: translate(-90%, -90%);
-        transform: translate(300%, 0%);
+        left: 600px;
     }
     #clear-pad-btn {
-        display: none;
+        position:absolute;
+        left: 625px;
     }
     #calculator-box {
         position: absolute;
-        transform: translate(-80%, -50%);
+        left: 150px;
+        top:10%;
+        transform: none;
     }
     .hidden-message {
         display:inline;
