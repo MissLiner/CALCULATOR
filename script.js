@@ -162,21 +162,19 @@ clearBtn.addEventListener('click', () => {
 
 deleteBtn.addEventListener('click', () => {
     if (operand !== 'start') {
-    if (num2 > 0) {
-        num2 = num2.toString();
-        if (num2.length = 1) {
+    if (num2) {
+        if (num2.length < 2) {
             num2 = '';
             highlightLastOperand();
             display.textContent = 0;
         }
         else {
             num2 = num2.slice(0, -1);
-            num2 = parseFloat(num2);
             display.textContent = num2;
         }
     }
 
-    else if (num1 > 0 && !operand) {
+    else if (num1 && !operand) {
         num1 = num1.toString();
         if (num1.length < 2) {
             num1 = '';
@@ -184,7 +182,7 @@ deleteBtn.addEventListener('click', () => {
         }
         else {
             num1 = num1.slice(0, -1);
-            num1 = parseFloat(num1);
+      
             updateDisplay(num1);
         }
     }
