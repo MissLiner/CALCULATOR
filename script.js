@@ -87,20 +87,15 @@ allButtons.forEach((button) => {
 
 numberBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
-            if (!operand && num1.length < 6) {
+            if ((!operand || operand === 'start') && num1.length < 6) {
+                operand = '';
                 if (num1 === '0') {
                     num1 = '';
                     num1 += button.textContent;
-                    updateDisplay(num1);
                 }
                 else {
                     num1 += button.textContent;
-                    updateDisplay(num1);
                 }
-            }
-            else if (operand === 'start') {
-                operand = '';
-                num1 = button.textContent;
                 updateDisplay(num1);
             }
             else if (operand && num2.length < 6) {
