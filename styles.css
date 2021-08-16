@@ -139,8 +139,12 @@ button {
     grid-template-columns: 33.3% 33.3% 33.3%;
 }
 
+#number-btn0 {
+    width: 33.3%;
+}
+
 .other-btn {
-    width: 30%;
+    width: 31%;
 }
 
 #equal-btn {
