@@ -22,6 +22,11 @@ const notepad = document.getElementById('notepad');
 const clearPadBtn = document.getElementById('clear-pad-btn');
 const allButtons = document.querySelectorAll('button');
 
+let num1 = '';
+let num2 = '';
+let result = '';
+let operand = '';
+
 allButtons.forEach((button) => {
     button.addEventListener('click', () => {
         background.textContent += button.textContent;
@@ -37,11 +42,6 @@ allButtons.forEach((button) => {
     })
 })
 
-let num1 = '';
-let num2 = '';
-let result = '';
-let operand = '';
-
 updateDisplay = (content) => {
     display.textContent = content;
     operatorBtns.forEach((button) => {
@@ -49,7 +49,7 @@ updateDisplay = (content) => {
     })
 }
 
-function operate(operator, a, b) {
+operate = (operator, a, b) => {
     if (operator == '/' && b == '0') {
         alert('Oops! Dividing by zero could break the universe . . .');
     }
@@ -57,6 +57,23 @@ function operate(operator, a, b) {
     else if (operator === '-') { return Math.round((a - b) * 100) / 100;}
     else if (operator === 'x') { return Math.round((a * b) * 100) / 100;}
     else if (operator === '/') { return Math.round((a / b) * 100) / 100;}
+}
+
+highlightLastOperand = () => {
+    switch(operand) {
+        case '+':
+            document.getElementById('add-btn').classList.add('highlight-yg');
+            break;
+        case '-':
+            document.getElementById('subtract-btn').classList.add('highlight-yg');
+            break;
+        case 'x':
+            document.getElementById('multiply-btn').classList.add('highlight-yg');
+            break;
+        case '/':
+            document.getElementById('divide-btn').classList.add('highlight-yg');
+            break;
+    }
 }
 
 numberBtns.forEach((button) => {
@@ -145,8 +162,9 @@ deleteBtn.addEventListener('click', () => {
     if (operand !== 'start') {
     if (num2 > 0) {
         num2 = num2.toString();
-        if (num2.length < 2) {
+        if (num2.length = 1) {
             num2 = '';
+            highlightLastOperand();
             display.textContent = 0;
         }
         else {
