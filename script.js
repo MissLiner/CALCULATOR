@@ -216,10 +216,12 @@ decimalBtn.addEventListener('click', () => {
 negativeBtn.addEventListener('click', () => {
     if (num1 && !num2 && !operand) {
         num1 = -num1;
+        num1 = num1.toString();
         updateDisplay(num1);
     }
     else if (num2) {
         num2 = -num2;
+        num2 = num2.toString();
         updateDisplay(num2);
     }
 })
