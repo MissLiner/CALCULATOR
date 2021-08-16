@@ -44,6 +44,8 @@ updateDisplay = (content) => {
     })
 }
 
+updateNotepad = () => notepad.textContent += ' ' + num1 + operand + num2 + '=' + result;
+
 highlightLastOperand = () => {
     switch(operand) {
         case '+':
@@ -119,7 +121,7 @@ operatorBtns.forEach((button) => {
         else if (num1 && num2 && operand) {
             num2 = parseFloat(num2);
             result = operate(operand, num1, num2);
-            notepad.textContent += " " + num1 + operand + num2 + '=' + result;
+            updateNotepad
             num1 = result;
             num2 = '';
             result = '';
@@ -131,19 +133,17 @@ operatorBtns.forEach((button) => {
 })
 
 equalBtn.addEventListener('click', () => {
+    animateButton(equalBtn);
+    
     if (num2) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
     result = operate(operand, num1, num2);
-    notepad.textContent += ' ' + num1 + operand + num2 + '=' + result + '\r';
+    updateNotepad();
     num1 = result;
     num2 = '';
     result = '';
     operand = 'start';
-    equalBtn.classList.add('enlarge');
-        setTimeout(function() {
-            equalBtn.classList.remove('enlarge');
-        }, 100);
     updateDisplay(num1);
     }
 })
