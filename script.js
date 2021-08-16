@@ -28,7 +28,7 @@ allButtons.forEach((button) => {
         button.classList.add('enlarge');
         setTimeout(function() {
             button.classList.remove('enlarge');
-        }, 300);
+        }, 200);
         console.log(button.id);
         console.log(num1);
         console.log(num2);
@@ -124,7 +124,7 @@ equalBtn.addEventListener('click', () => {
     equalBtn.classList.add('enlarge');
         setTimeout(function() {
             equalBtn.classList.remove('enlarge');
-        }, 300);
+        }, 100);
     updateDisplay(num1);
     }
 })
