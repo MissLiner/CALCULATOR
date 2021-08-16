@@ -46,6 +46,17 @@ updateDisplay = (content) => {
 
 updateNotepad = () => notepad.textContent += ' ' + num1 + operand + num2 + '=' + result;
 
+calculate = () => {            
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    result = operate(operand, num1, num2);
+    updateNotepad();
+    num1 = result;
+    num2 = '';
+    result = '';
+    updateDisplay(num1);
+}
+
 highlightLastOperand = () => {
     switch(operand) {
         case '+':
@@ -119,19 +130,12 @@ operatorBtns.forEach((button) => {
             (operatorBtns[i]).classList.remove('highlight-yg');
         }
         if (num1 && !num2) {
-            num1 = parseFloat(num1);
             operand = button.textContent;
             button.classList.add('highlight-yg');
         }
         else if (num1 && num2 && operand) {
-            num2 = parseFloat(num2);
-            result = operate(operand, num1, num2);
-            updateNotepad();
-            num1 = result;
-            num2 = '';
-            result = '';
+            calculate();
             operand = button.textContent;
-            updateDisplay(num1);
             button.classList.add('highlight-yg');
         }
     })
@@ -139,16 +143,8 @@ operatorBtns.forEach((button) => {
 
 equalBtn.addEventListener('click', () => {
     if (num2) {
-        num1 = parseFloat(num1);
-        num2 = parseFloat(num2);
-        result = operate(operand, num1, num2);
-        updateNotepad();
-
-        num1 = result;
-        num2 = '';
-        result = '';
+        calculate();
         operand = 'start';
-        updateDisplay(num1);
     }
 })
 
