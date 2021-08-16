@@ -27,28 +27,6 @@ let num2 = '';
 let result = '';
 let operand = '';
 
-allButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        background.textContent += button.textContent;
-        button.classList.add('enlarge');
-        setTimeout(function() {
-            button.classList.remove('enlarge');
-        }, 200);
-        console.log(button.id);
-        console.log(num1);
-        console.log(num2);
-        console.log(result);
-        console.log(operand);
-    })
-})
-
-updateDisplay = (content) => {
-    display.textContent = content;
-    operatorBtns.forEach((button) => {
-        button.classList.remove('highlight-yg');
-    })
-}
-
 operate = (operator, a, b) => {
     if (operator == '/' && b == '0') {
         alert('Oops! Dividing by zero could break the universe . . .');
@@ -57,6 +35,13 @@ operate = (operator, a, b) => {
     else if (operator === '-') { return Math.round((a - b) * 100) / 100;}
     else if (operator === 'x') { return Math.round((a * b) * 100) / 100;}
     else if (operator === '/') { return Math.round((a / b) * 100) / 100;}
+}
+
+updateDisplay = (content) => {
+    display.textContent = content;
+    operatorBtns.forEach((button) => {
+        button.classList.remove('highlight-yg');
+    })
 }
 
 highlightLastOperand = () => {
@@ -75,6 +60,30 @@ highlightLastOperand = () => {
             break;
     }
 }
+
+addToBackground = (content) => background.textContent += content;
+animateButton = (button) => {
+    button.classList.add('enlarge');
+    setTimeout(function() {
+        button.classList.remove('enlarge');
+    }, 200);
+}
+
+debugLogValues = (button) => {
+    console.log(button.id);
+    console.log(num1);
+    console.log(num2);
+    console.log(result);
+    console.log(operand);
+}
+
+allButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        addToBackground(button.textContent);
+        animateButton(button);
+        debugLogValues(button);
+    })
+})
 
 numberBtns.forEach((button) => {
     button.addEventListener('click', function newValue() {
@@ -120,7 +129,6 @@ operatorBtns.forEach((button) => {
             num2 = '';
             result = '';
             operand = button.textContent;
-            background.textContent += num1;
             updateDisplay(num1);
             button.classList.add('highlight-yg');
         }
@@ -137,7 +145,6 @@ equalBtn.addEventListener('click', () => {
     num2 = '';
     result = '';
     operand = 'start';
-    background.textContent += num1 + '  ';
     equalBtn.classList.add('enlarge');
         setTimeout(function() {
             equalBtn.classList.remove('enlarge');
