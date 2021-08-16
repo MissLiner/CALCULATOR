@@ -17,9 +17,14 @@ button {
     color: red;
 }
 
-.highlight {
+.highlight-yg {
     background-color:yellowgreen;
-    size: 105%;
+    transform: scale(1.1, 1.1);
+}
+
+.highlight-orange {
+    background-color: salmon;
+    transform: scale(1.1, 1.1);
 }
 
 .backwards-text {
@@ -33,7 +38,6 @@ button {
 
 #head-left {
     position:absolute;
-    float:initial;
     top: 0px;
     left: 50px;
     writing-mode: vertical-lr;

@@ -41,7 +41,7 @@ let operand = '';
 updateDisplay = (content) => {
     display.textContent = content;
     operatorBtns.forEach((button) => {
-        button.classList.remove('highlight');
+        button.classList.remove('highlight-yg');
     })
 }
 
@@ -84,12 +84,12 @@ numberBtns.forEach((button) => {
 operatorBtns.forEach((button) => {
     button.addEventListener('click', () => {
         for (var i = 0, len = operatorBtns.length; i < len; i++) {
-            (operatorBtns[i]).classList.remove('highlight');
+            (operatorBtns[i]).classList.remove('highlight-yg');
         }
         if (num1 && !num2) {
             num1 = parseFloat(num1);
             operand = button.textContent;
-            button.classList.add('highlight');
+            button.classList.add('highlight-yg');
         }
         else if (num1 && num2 && operand) {
             num2 = parseFloat(num2);
@@ -101,6 +101,7 @@ operatorBtns.forEach((button) => {
             operand = button.textContent;
             background.textContent += num1;
             updateDisplay(num1);
+            button.classList.add('highlight-yg');
         }
     })
 })
@@ -128,7 +129,7 @@ clearBtn.addEventListener('click', () => {
     operand = 'start';
     background.textContent = '';
     operBtns.forEach((button) => {
-        button.classList.remove('highlight');
+        button.classList.remove('highlight-yg');
     })
 });
 
